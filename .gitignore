@@ -1,0 +1,99 @@
+# General Node.js ignores
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Distribution / build
+dist/
+build/
+target/
+out/
+tmp/
+tmp-build/
+.tmp/
+cmmn/
+es/
+lib/
+npm-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Local and temp files (OS-specific)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+.Spotlight-V100
+.Trashes
+Icon?
+*.cab
+*.msi
+*.lnk
+
+# IDE-specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.opencover.xml
+*.DotSettings
+*.DotSettings.user
+.sourcemaps/
+
+# Environment configuration
+.env
+.env.local
+.env.*.local
+.env.example
+.env.sample
+
+# Testing
+coverage/
+*.log
+*.seed
+testresults/
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+[Dd]esktop.ini
+
+# Yarn and npm specific
+yarn-debug.log*
+yarn-error.log*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Netlify specific
+.netlify/
+
+# Serverless specific
+.serverless/
+
+# Grunt and gulp
+.grunt/
+gulpfile.js
+
+# Parcel
+.parcel-cache
+
+# JetBrains IDEs
+*.iml
+
+# Deno
+.deno/
+
+# Others
+report.html
+secret.key
+*.orig
