@@ -1,10 +1,11 @@
 const mysql = require('mysql2');
+require('dotenv').config(); // Load variables from .env file
 
 const db = mysql.createConnection({
-  host: 'sql201.infinityfree.com',
-  user: 'if0_38965303',
-  password: 'N4Dn9A1jXIQTS',
-  database: 'if0_38965303_PertaminaApps',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 });
 
 db.connect((err) => {
