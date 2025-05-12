@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Kentod!@#2133',
-  database: 'PertaminaApps',
+  host: 'sql201.infinityfree.com',
+  user: 'if0_38965303',
+  password: 'N4Dn9A1jXIQTS',
+  database: 'if0_38965303_PertaminaApps',
 });
 
 db.connect((err) => {
