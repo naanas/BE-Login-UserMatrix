@@ -1,19 +1,17 @@
-const mysql = require('mysql2');
-require('dotenv').config(); // Load variables from .env file
+const mongoose = require('mongoose');
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-});
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Koneksi database gagal:', err);
-    return;
-  }
-  console.log('Terhubung ke database MySQL');
-});
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+        process.exit(1);
+    }
+};
 
-module.exports = db;
+module.exports = connectDB;
