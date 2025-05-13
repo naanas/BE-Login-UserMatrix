@@ -10,10 +10,10 @@
     {
       "src": "/api/users/(.*)",
       "dest": "/api/users/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
-  ],
-  "env": {
-    "MONGODB_URI": "mongodb+srv://annasputra:Kentod2133@cluster0.slxsria.mongodb.net/PertaminaApps?retryWrites=true&w=majority&appName=Cluster0",
-    "PORT": "5000"
-  }
+  ]
 }
