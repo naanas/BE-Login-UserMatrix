@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db.config');
 const userRoutes = require('./routes/userRoutes');
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -20,35 +21,31 @@ connectDB();
 // Routes
 app.use('/api/users', userRoutes);
 
-// Tangani rute root (/)
+// Root route
 app.get('/', (req, res) => {
   res.send(`
     <h1>API is running!</h1>
-    <p>Selamat datang di backend API User Matrix!</p>
-    <p>Coba akses <a href="/api/users/login">/api/users/login</a> untuk melihat data pengguna.</p>
+    <p>Welcome to the User Matrix Backend API!</p>
+    <p>Try accessing <a href="/api/users/login">/api/users/login</a> to view user data.</p>
   `);
 });
 
-// Middleware untuk menangani rute yang tidak ditemukan (404)
+// 404 Error Handling
 app.use((req, res, next) => {
   res.status(404).send(`
     <h1>404 Not Found</h1>
-    <p>Maaf, rute yang Anda cari tidak ditemukan.</p>
+    <p>Sorry, the route you are looking for is not found.</p>
   `);
 });
 
-// Middleware untuk menangani kesalahan server (500)
+// 500 Error Handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send(`
     <h1>500 Internal Server Error</h1>
-    <p>Terjadi kesalahan pada server. Silakan coba lagi nanti.</p>
+    <p>An error occurred on the server. Please try again later.</p>
   `);
 });
 
-// Tidak perlu app.listen() di Vercel
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-module.exports = app; // Export app untuk Vercel
+// Export the app for serverless deployment on platforms like Vercel
+module.exports = app;
