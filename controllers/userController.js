@@ -14,38 +14,6 @@ const generateToken = (userId) => {
         expiresIn: '30d', // Token expires in 30 days
     });
 };
-// @desc    Register a new user
-// @route   POST /api/users/register
-// @access  Public
-const registerUser = async (req, res) => {
-    const { userId, password, role } = req.body;
-
-    try {
-        // Check if user exists
-        let user = await User.findOne({ userId });
-
-        if (user) {
-            return res.status(400).json({ message: 'User already exists' });
-        }
-
-        // Hash password
-        const hashedPassword = await generateHashedPassword(password);
-
-        // Create user
-        user = new User({
-            userId,
-            password: hashedPassword,
-            role,
-        });
-
-        await user.save();
-
-        res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server error');
-    }
-};
 
 // @desc    Login user
 // @route   POST /api/users/login

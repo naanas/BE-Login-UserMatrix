@@ -10,9 +10,6 @@ router.get('/profile', userController.protect, (req, res) => {
     res.json({ message: 'Profile data', user: req.user });
 });
 
-// Rute register
-router.post('/register', userController.registerUser);
-
 // Rute untuk mendapatkan daftar pengguna
 router.get('/manage/users', userController.getAllUsers);
 
