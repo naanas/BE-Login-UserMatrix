@@ -9,15 +9,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
+// Middleware (Pastikan urutan benar)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB
-connectDB();
-
-// Routes
+// Routes (Pastikan dipasang setelah middleware)
 app.use('/api/users', userRoutes);
 
 // Tangani rute root (/)
@@ -46,9 +43,4 @@ app.use((err, req, res, next) => {
   `);
 });
 
-// Tidak perlu app.listen() di Vercel
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-module.exports = app; // Export app untuk Vercel
+module.exports = app;
