@@ -8,8 +8,32 @@
   ],
   "routes": [
     {
-      "src": "/api/users/(.*)",
-      "destination": "/server.js"
+      "src": "/api/users/login",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/users/register",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/users/profile",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/users/manage/users",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/users/users",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/api/users/manage/users/:id",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/",
+      "dest": "/server.js"
     }
   ]
 }
