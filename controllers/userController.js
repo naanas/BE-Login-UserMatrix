@@ -9,11 +9,13 @@ const generateHashedPassword = async (password) => {
     return hashedPassword;
 };
 
+// Fungsi untuk membuat token JWT
 const generateToken = (userId) => {
     return jwt.sign({ userId }, process.env.JWT_SECRET, {
         expiresIn: '30d', // Token expires in 30 days
     });
 };
+
 // @desc    Register a new user
 // @route   POST /api/users/register
 // @access  Public
@@ -42,8 +44,8 @@ const registerUser = async (req, res) => {
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server error');
+        console.error('Registration error:', error);
+        res.status(500).json({ message: 'Registration failed' });
     }
 };
 
@@ -51,14 +53,14 @@ const registerUser = async (req, res) => {
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = async (req, res) => {
-    const { userId, password } = req.body; // Use userId instead of email
+    const { userId, password } = req.body;
 
     if (!userId || !password) {
         return res.status(400).json({ message: 'Please provide userId and password' });
     }
 
     try {
-        const user = await User.findOne({ userId }).select('+password'); // Use userId instead of email
+        const user = await User.findOne({ userId }).select('+password'); // Ambil password
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
@@ -76,7 +78,7 @@ const loginUser = async (req, res) => {
             message: 'Login successful',
             token: token,
             user: {
-                userId: user.userId, // Send back userId
+                userId: user.userId,
                 role: user.role,
             },
         });
@@ -124,7 +126,7 @@ const getAllUsers = async (req, res) => {
         const users = await User.find();
         res.status(200).json(users);
     } catch (error) {
-        console.error(error.message);
+        console.error('Get all users error:', error);
         res.status(500).send('Server error');
     }
 };
@@ -142,7 +144,7 @@ const getUserById = async (req, res) => {
 
         res.status(200).json(user);
     } catch (error) {
-        console.error(error.message);
+        console.error('Get user by ID error:', error);
 
         if (error.kind === 'ObjectId') {
             return res.status(404).json({ message: 'User not found' });
@@ -180,8 +182,8 @@ const createUser = async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully' });
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send('Server error');
+        console.error('Create user error:', error);
+        res.status(500).json({ message: 'Create user failed' });
     }
 };
 
@@ -213,7 +215,7 @@ const updateUser = async (req, res) => {
 
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
-        console.error(error.message);
+        console.error('Update user error:', error);
 
         if (error.kind === 'ObjectId') {
             return res.status(404).json({ message: 'User not found' });
@@ -238,7 +240,7 @@ const deleteUser = async (req, res) => {
 
         res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {
-        console.error(error.message);
+        console.error('Delete user error:', error);
 
         if (error.kind === 'ObjectId') {
             return res.status(404).json({ message: 'User not found' });
