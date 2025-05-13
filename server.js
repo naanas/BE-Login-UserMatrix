@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send(`
     <h1>API is running!</h1>
     <p>Selamat datang di backend API User Matrix!</p>
-    <p>Coba akses <a href="/api/users/manage/users">/api/users/manage/users</a> untuk melihat data pengguna.</p>
+    <p>Coba akses <a href="/api/users/login">/api/users/login</a> untuk melihat data pengguna.</p>
   `);
 });
 
