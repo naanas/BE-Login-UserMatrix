@@ -44,12 +44,7 @@ Icon?
 *.DotSettings.user
 .sourcemaps/
 
-# Environment configuration
-.env
-.env.local
-.env.*.local
-.env.example
-.env.sample
+
 
 # Testing
 coverage/
