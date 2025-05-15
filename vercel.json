@@ -1,9 +1,12 @@
 {
   "version": 2,
   "builds": [
-    {
+      {
       "src": "server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "nodeVersion": "16.x" // atau 14.x, 18.x, dll.
+      }
     }
   ],
   "routes": [
