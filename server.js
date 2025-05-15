@@ -11,7 +11,7 @@ connectDB();
 app.use(express.json());
 app.use('/users', userRoutes);
 
-const port = process.env.PORT || 3000; // Use Vercel's PORT or default to 3000
+const port = process.env.PORT || 5000; // Use Vercel's PORT or default to 3000
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
