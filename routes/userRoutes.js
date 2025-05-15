@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const User = require('./models/User');
+const User = require('../models/User');
 
 // Create a new user
-router.post('/', async (req, res, next) => {
+router.post('/new', async (req, res, next) => {
   try {
     const { userId, password, role } = req.body;
     const user = new User({ userId, password, role });
@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Read all users
-router.get('/', async (req, res, next) => {
+router.get('/show', async (req, res, next) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // Update a user
-router.patch('/:id', async (req, res, next) => {
+router.patch('/up', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     if (user == null) {
@@ -62,7 +62,7 @@ router.patch('/:id', async (req, res, next) => {
 });
 
 // Delete a user
-router.delete('/:id', async (req, res, next) => {
+router.delete('/del', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     if (user == null) {
