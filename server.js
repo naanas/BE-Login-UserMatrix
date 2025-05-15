@@ -1,30 +1,24 @@
+// server.js
 const express = require('express');
+const app = express();
 const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./config/db.config');
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/users');
+const connectDB = require('./config/database');
 
 dotenv.config();
-
-const app = express();
-const port = process.env.PORT || 5000;
-
-// Middleware
-app.use(cors());
-app.use(express.json()); // Add this line to parse JSON request bodies
-app.use(express.urlencoded({ extended: true })); // Add this line to parse URL-encoded request bodies
 
 // Connect to MongoDB
 connectDB();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Routes
-app.use('/api/users', userRoutes); // Mount the userRoutes with the base URL '/api/users'
+app.use('/users', userRoutes);
 
-app.get('/', (req, res) => {
-  res.send('API is running!');
-});
+// Use Vercel's PORT environment variable, or default to 3000
+const port = process.env.PORT || 3000;
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
