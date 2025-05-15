@@ -1,12 +1,9 @@
 {
   "version": 2,
   "builds": [
-      {
+    {
       "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "nodeVersion": "16.x" // atau 14.x, 18.x, dll.
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -16,8 +13,7 @@
     }
   ],
   "env": {
-    "MONGO_URI": "mongodb+srv://annasputra:Kentod2133@cluster0.slxsria.mongodb.net/PertaminaApps?retryWrites=true&w=majority&appName=Cluster0",
-    "JWT_SECRET": "207307697544c3d1db4ec364735cded689d84d4dc726ac4df031e0f9dec9b48b61e86dc593882f4c6ba93dafecc3d1582148e8b0a1f720b5ca77ae942720077a
-"
+    "MONGO_URI": "@mongo_uri",
+    "JWT_SECRET": "@jwt_secret"
   }
 }
